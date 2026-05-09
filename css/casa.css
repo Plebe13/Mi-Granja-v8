@@ -1,0 +1,259 @@
+/* ================================
+   ESTILOS PANEL "MI CASA"
+   ================================ */
+
+/* Contenedor general del panel */
+#casa {
+  padding: 12px 10px 18px;
+}
+
+/* Cards de Mi Casa (reusa tu estilo pero afinado aquí) */
+#casa .card {
+  background: #1b1410;
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Card más oscura para la mejora siguiente */
+#casa .small-dark {
+  background: #0c0e14;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Títulos y textos ajustados */
+#casa h2 {
+  margin: 0 0 8px;
+}
+
+#casa h3 {
+  margin: 0 0 6px;
+}
+
+#casa h4 {
+  margin: 4px 0;
+}
+
+#casa .small-text {
+  font-size: 0.83rem;
+  line-height: 1.25;
+}
+
+/* Filas y grid (por si tu style.css no lo tiene así) */
+#casa .grid.cols-2 {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
+}
+
+#casa .row {
+  display: flex;
+  align-items: center;
+}
+
+/* Texto tipo key-value */
+#casa .kv {
+  margin: 2px 0;
+}
+
+/* Separador fino */
+#casa .sep {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 8px 0;
+}
+
+/* ================================
+   COFRE / INVENTARIO
+   ================================ */
+
+#casa .inv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+  gap: 6px;
+}
+
+/* Botón de slot (cofre e inventario) */
+#casa .casa-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.06), transparent 55%),
+              rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  font-size: 0.78rem;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, border-color 0.08s ease;
+}
+
+#casa .casa-slot span:first-child {
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+#casa .casa-slot .qty {
+  margin-top: 1px;
+  font-weight: 700;
+}
+
+/* Hover/active para dar sensación de botón */
+#casa .casa-slot:hover {
+  border-color: rgba(255, 215, 160, 0.9);
+  box-shadow: 0 0 6px rgba(255, 200, 120, 0.4);
+  transform: translateY(-1px);
+}
+
+#casa .casa-slot:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Textito bajo el cofre */
+#casa .cofre-help {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+/* ================================
+   BOTONES
+   ================================ */
+
+#casa .btn.small {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* Botón principal */
+#casa .btn.small:not(:disabled) {
+  border: 1px solid rgba(255, 220, 160, 0.85);
+  background: linear-gradient(135deg, #c78a3a, #a9651b);
+  color: #fff;
+}
+
+/* Hover */
+#casa .btn.small:not(:disabled):hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* Deshabilitado */
+#casa .btn.small:disabled {
+  opacity: 0.45;
+  cursor: default;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ================================
+   TRABAJADOR / CUARTO DE SEMILLAS
+   ================================ */
+
+#casa .worker-info {
+  margin-bottom: 4px;
+}
+
+#casa .seed-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 8px;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 900px) {
+  #casa .grid.cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  #casa {
+    padding: 8px 6px 14px;
+  }
+
+  #casa .inv-grid {
+    grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+  }
+
+  #casa .casa-slot {
+    font-size: 0.72rem;
+  }
+}
+#casa .casa-slot .qty {
+  color: #fff !important;          /* blanco brillante */
+  font-weight: 900;
+  font-size: 0.85rem;               /* un poco más grande */
+  text-shadow: 0 0 3px #000, 
+               0 0 6px #000;        /* borde negro para que siempre se vea */
+}
+/* ================================
+   COFRE vs INVENTARIO – Layout
+   ================================ */
+
+#casa .casa-cofre-header {
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+#casa .casa-cofre-header .side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#casa .casa-cofre-header .side.right {
+  align-items: flex-end;
+}
+
+#casa .casa-cofre-header .hint {
+  opacity: 0.8;
+}
+
+/* Caja que envuelve las dos columnas */
+#casa .casa-cofre-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Columna base */
+#casa .casa-cofre-col {
+  padding: 6px;
+}
+
+/* Lado cofre (izquierda) */
+#casa .casa-cofre-left {
+  background: rgba(0, 0, 0, 0.40);
+  border-right: 1px solid rgba(0, 0, 0, 0.85);
+}
+
+/* Lado inventario (derecha) */
+#casa .casa-cofre-right {
+  background: rgba(0, 0, 0, 0.20);
+}
+
+/* Diferenciar visualmente los slots de cada lado */
+#casa #chest-slots .casa-slot {
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.06), transparent 55%),
+              rgba(26, 14, 6, 0.95);
+}
+
+#casa #inv-slots .casa-slot {
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.06), transparent 55%),
+              rgba(5, 12, 22, 0.95);
+}
+#casa .cost-item {
+  cursor: help; /* manita + tooltip */
+}

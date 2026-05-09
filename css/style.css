@@ -1,0 +1,1180 @@
+:root{
+  --bg:#0e0f12; --panel:#171921; --muted:#a3acc2; --text:#eef1f8;
+  --accent:#7dd3fc; --accent-2:#86efac; --danger:#fda4af; --gold:#facc15; --purple:#c084fc;
+  --radius:16px;
+}
+body.theme-forest{ --bg:#0c1210; --panel:#0f1a15; --accent:#86efac; --accent-2:#7dd3fc; }
+body.theme-forge{ --bg:#0f0f13; --panel:#17171e; --accent:#a1a1aa; --accent-2:#60a5fa; }
+body.theme-dawn{ --bg:#140f0c; --panel:#1e1711; --accent:#facc15; --accent-2:#fda4af; }
+*{box-sizing:border-box}
+html,body{height:100%}
+html {
+  overflow-y: scroll;  /* scrollbar vertical siempre reservada */
+}
+
+body{
+  margin:0;
+  background: radial-gradient(1200px 600px at 10% 0%, #111422 0%, #0c0d12 40%, #08090d 100%), var(--bg);
+  color:var(--text);
+  font:16px/1.4 system-ui,Segoe UI,Roboto,Helvetica,Arial;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  background:rgba(12,14,20,.6);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.brand{font-weight:700}
+.tag{font-size:.85rem;color:var(--muted);margin-left:6px}
+.hud{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+.pill{
+  background:#12141b;
+  border:1px solid rgba(255,255,255,.08);
+  padding:8px 12px;
+  border-radius:999px;
+  color:var(--muted)
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  padding:10px 16px;
+  flex-wrap:wrap;
+}
+
+.tab{
+  background:#12141b;
+  border:1px solid rgba(255,255,255,.08);
+  padding:10px 12px;
+  border-radius:10px;
+  color:var(--muted);
+  cursor:pointer;
+}
+
+.tab.on{
+  border-color:rgba(125,211,252,.5);
+  color:var(--text);
+  box-shadow:0 0 0 2px rgba(125,211,252,.15) inset;
+}
+
+main{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:10px 40px 40px; /* más aire a los lados */
+}
+
+.panel{
+  display:none;
+  background:var(--panel);
+  border-radius:var(--radius);
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
+  padding:18px;
+}
+.panel.on{display:block}
+
+.grid{display:grid;gap:14px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-4{grid-template-columns:repeat(4,1fr)}
+
+.card{
+  background:#12141b;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:14px;
+}
+.card h3{margin:6px 0 10px 0}
+
+.row{display:flex;gap:10px;align-items:center}
+.row.space{justify-content:space-between}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:10px 12px;
+  cursor:pointer;
+  color:#0b0d12;
+  background:var(--accent);
+  font-weight:600;
+}
+.btn.ghost{
+  background:transparent;
+  color:var(--text);
+  border:1px solid rgba(255,255,255,.15);
+}
+.btn.danger{background:var(--danger)}
+.btn.small{padding:8px 10px;font-size:.9rem}
+.btn.purple{background:var(--purple);color:#0b0d12}
+.btn.gold{background:var(--gold);color:#0b0d12}
+
+.kv{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  color:var(--muted);
+}
+
+/* ==== Inventario (compacto + PNG) ==== */
+
+.inv-grid{
+  display:grid;
+  /* tarjetas más pequeñas y flexibles */
+  grid-template-columns:repeat(auto-fill, minmax(90px,1fr));
+  gap:8px;
+}
+
+.inv-slot{
+  position:relative;
+  background:#0c0e14;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  padding:6px 6px;
+  min-height:90px;              /* más bajita que antes */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  font-size:0.95rem;            /* para los emojis cuando no hay PNG */
+}
+
+/* contenedor del icono */
+.inv-slot .inv-icon-wrap {
+  height:52px;                  /* altura contenida */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:4px;
+}
+/* Iconos pequeños para costes y textos (casa / semillas) */
+.cost-icon,
+.seed-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 3px;
+  display: inline-block;
+}
+
+/* imagen PNG del icono */
+.inv-slot img.inv-icon {
+  width:40px;
+  height:40px;
+  object-fit:contain;
+  display:block;
+}
+
+/* cantidad abajo a la derecha, más discreta */
+.inv-slot .qty{
+  position:absolute;
+  right:6px;
+  bottom:4px;
+  background:rgba(0,0,0,.55);
+  padding:1px 6px;
+  border-radius:999px;
+  font-size:.8rem;
+}
+
+/* ==== Herramientas ==== */
+
+.tool{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#0c0e14;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.progress{
+  height:10px;
+  background:#0c0e14;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  overflow:hidden;
+}
+.progress>div{
+  height:100%;
+  background:linear-gradient(90deg,var(--accent),#34d399);
+}
+
+.badge{
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#0c0e14;
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+/* ==== Toast / autosave ==== */
+
+.toast{
+  position:fixed;
+  right:16px;
+  top:72px;
+  background:rgba(18,20,27,.95);
+  border:1px solid rgba(255,255,255,.08);
+  padding:10px 12px;
+  border-radius:10px;
+  margin-bottom:8px;
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
+}
+#toast-container{
+  position:fixed;
+  right:16px;
+  top:72px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  z-index:50;
+}
+
+.autosave{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:20px;
+  background:#0c0e14;
+  border:1px solid rgba(255,255,255,.08);
+  padding:8px 12px;
+  border-radius:10px;
+  opacity:.0;
+  transition:opacity .3s;
+}
+.autosave.show{opacity:1}
+.hidden{display:none}
+
+/* ==== NPCs del pueblo & diálogo ==== */
+
+.npc{
+  text-align:center;
+}
+.npc p{
+  font-size:0.8rem;
+  color:var(--muted);
+}
+
+#npc-dialog .dialog{
+  margin-top:18px;
+  max-width:520px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Herbalista: grid para ingredientes del bosque */
+.herb-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.herb-card{
+  padding:10px;
+}
+
+/* ==== Responsivo ==== */
+
+@media (max-width:900px){
+  main{
+    padding:10px 8px 32px;
+  }
+  .grid.cols-4{
+    grid-template-columns:repeat(2,1fr);
+  }
+  /* en pantallas medias, aún más compacto */
+  .inv-grid{
+    grid-template-columns:repeat(6,1fr);
+  }
+}
+
+@media (max-width:600px){
+  .grid.cols-4,
+  .grid.cols-3{
+    grid-template-columns:repeat(1,1fr);
+  }
+  .inv-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+
+/* --- TIENDA: tarjetas más compactas y recomendaciones --- */
+.shop-summary {
+  padding: 10px 12px;
+}
+
+.shop-card {
+  padding: 8px 10px;
+  font-size: 0.9rem;
+}
+
+.shop-card .kv,
+.shop-summary .kv {
+  margin-bottom: 4px;
+}
+
+.shop-grid .card {
+  margin-bottom: 8px;
+}
+
+.small-text {
+  font-size: 0.85rem;
+  line-height: 1.25;
+}
+
+/* etiqueta de rareza/origen */
+.tag-text {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* lista de sugerencias de la tienda */
+.suggest-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.suggest-list li {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.animal-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: 0.15s ease;
+}
+/* 🔥 Efecto hover (añadir debajo) */
+.animal-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   📜 Misiones — Layout
+   ========================= */
+
+#misiones .missions-layout {
+  gap: 12px;
+  align-items: flex-start;
+}
+
+#misiones .missions-left,
+#misiones .missions-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#misiones .missions-header {
+  margin-bottom: 6px;
+}
+
+#misiones .missions-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+#misiones .missions-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+#misiones .missions-list {
+  margin-top: 4px;
+  gap: 10px;
+}
+
+/* Tarjetas de misión */
+#misiones .mission-card.done {
+  border-color: rgba(132, 204, 22, 0.9);
+  box-shadow: 0 0 12px rgba(132, 204, 22, 0.25);
+}
+
+#misiones .mission-card .kv {
+  font-size: 0.85rem;
+}
+
+/* Columna derecha */
+#misiones .missions-info .progress {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#misiones .missions-info .progress > div {
+  height: 100%;
+}
+
+/* Tips */
+#misiones .missions-tips {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Responsive: en pantallas pequeñas, una sola columna */
+@media (max-width: 900px) {
+  #misiones .missions-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --- Misiones compactas --- */
+
+#misiones .mission-small {
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+#misiones .mission-small h3 {
+  font-size: 1rem;
+}
+
+/* Épicas más compactas */
+#misiones .mission-epic {
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent);
+}
+
+#misiones .mission-epic h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+/* No columnas enormes en PC */
+@media (min-width: 900px) {
+  #misiones .grid.cols-2 .card {
+    min-height: 90px;
+  }
+}
+
+/* Si la pantalla es pequeña, 1 columna */
+@media (max-width: 800px) {
+  #misiones .grid.cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================
+   Misiones – estilo compacto
+   ========================= */
+
+/* Contenedor general de la pestaña */
+#misiones {
+  font-size: 0.9rem;
+}
+
+/* Cabecera (rep, racha, cofre, reroll) más pegada */
+#misiones .title {
+  margin-bottom: 8px;
+}
+
+#misiones .subtitle {
+  font-size: 0.95rem;
+  margin: 8px 0 4px;
+}
+
+/* Tarjetas pequeñas para diarias y épicas */
+#misiones .mission-small,
+#misiones .mission-epic {
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+}
+
+/* Títulos dentro de la tarjeta más chicos */
+#misiones .mission-small h3,
+#misiones .mission-epic h3 {
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+/* Texto kv dentro de misiones más apretado */
+#misiones .mission-small .kv,
+#misiones .mission-epic .kv {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+/* Barra de progreso finita y pegada */
+#misiones .mission-small .progress,
+#misiones .mission-epic .progress {
+  height: 4px;
+  margin: 4px 0;
+}
+
+/* Botones de reclamar más pequeños */
+#misiones .mission-small .btn,
+#misiones .mission-epic .btn {
+  margin-top: 4px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+}
+
+/* Intentar dos columnas en pantallas grandes */
+#misiones .grid.cols-2 {
+  gap: 8px;
+}
+
+@media (min-width: 1024px) {
+  #misiones .grid.cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* En pantallas chicas, 1 columna como siempre */
+@media (max-width: 768px) {
+  #misiones .grid.cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Asegurar que solo se muestra el subpanel activo */
+#personaje .subpanel {
+  display: none;
+}
+
+#personaje .subpanel.on {
+  display: block;
+}
+
+/* Gallinas: tarjetas más compactas */
+.hen-card {
+  padding: 6px 8px;
+  font-size: 0.8rem;
+  line-height: 1.25;
+}
+
+.hen-card .small-text {
+  margin: 1px 0;
+}
+
+.hen-card .btn-hen-cull {
+  padding: 2px 10px;
+  font-size: 0.75rem;
+}
+
+.hen-card strong {
+  font-weight: 600;
+}
+/* ====== Records / Tops ====== */
+.records-header h2{
+  margin-bottom:4px;
+}
+.records-header p{
+  color:var(--muted);
+}
+.record-card{
+  text-align:left;
+}
+.record-value{
+  font-size:1.8rem;
+  font-weight:700;
+  margin:8px 0 4px;
+}
+.record-extra{
+  color:var(--muted);
+}
+@media (max-width: 900px){
+  .records-grid.grid.cols-3{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width: 640px){
+  .records-grid.grid.cols-3{
+    grid-template-columns:repeat(1,minmax(0,1fr));
+  }
+}
+/* ====== Panel PROGRESO (misiones/logros/records/trofeos) ====== */
+
+.progreso-root {
+  display:flex;
+  gap:20px;
+  min-height:0;
+  flex-wrap:wrap;
+}
+
+.progreso-sidebar {
+  width:260px;
+  max-width:100%;
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:16px;
+  border:1px solid rgba(148,163,184,0.35);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.progreso-sidebar h2 {
+  font-size:1rem;
+}
+.progreso-sidebar p {
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+.progreso-stat-row {
+  display:flex;
+  justify-content:space-between;
+  font-size:0.85rem;
+  margin-bottom:4px;
+}
+.progreso-stat-row .label { color:var(--muted); }
+.progreso-stat-row .value { font-weight:600; }
+
+.progreso-progress-bar {
+  position:relative;
+  height:7px;
+  border-radius:999px;
+  background:#020617;
+  overflow:hidden;
+  margin-top:4px;
+}
+.progreso-progress-fill {
+  position:absolute;
+  inset:0;
+  width:40%;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+}
+
+/* parte derecha */
+.progreso-main {
+  flex:1;
+  min-width:260px;
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:16px;
+  border:1px solid rgba(148,163,184,0.35);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-height:calc(100vh - 180px);
+  overflow:auto;
+}
+
+.progreso-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.progreso-header h2 {
+  font-size:1.1rem;
+}
+
+/* subtabs internas */
+.progreso-subtabs {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.progreso-subtab {
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,0.5);
+  padding:6px 14px;
+  font-size:0.9rem;
+  background:rgba(23,25,33,0.9);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.progreso-subtab.on {
+  border-color:var(--accent);
+  background:rgba(125,211,252,0.16);
+  box-shadow:0 0 0 1px rgba(56,189,248,0.4);
+}
+
+/* filtros */
+.progreso-search-box {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:#020617;
+  border-radius:999px;
+  padding:4px 10px;
+  border:1px solid rgba(148,163,184,0.6);
+  flex:0 0 260px;
+}
+.progreso-search-box input {
+  background:transparent;
+  border:none;
+  outline:none;
+  color:var(--text);
+  font-size:0.9rem;
+  width:100%;
+}
+
+.progreso-chips {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  font-size:0.8rem;
+  margin-top:4px;
+}
+.progreso-chip {
+  padding:3px 8px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,0.4);
+  cursor:pointer;
+  background:#020617;
+}
+.progreso-chip.active {
+  border-color:var(--accent-2);
+  background:rgba(34,197,94,0.18);
+}
+
+/* grid + tarjetas reutilizando estilo del juego */
+.progreso-grid { display:grid; gap:10px; }
+.progreso-cols-2 { grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.progreso-cols-3 { grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+.progreso-cols-4 { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); }
+
+.progreso-card {
+  background:#020617;
+  border-radius:14px;
+  padding:10px 12px;
+  border:1px solid rgba(30,64,175,0.7);
+  box-shadow:0 0 0 1px rgba(15,23,42,0.8);
+}
+.progreso-card:hover {
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px rgba(125,211,252,0.7);
+}
+
+/* helpers */
+.progreso-row { display:flex; align-items:center; gap:6px; }
+.progreso-row.space { justify-content:space-between; }
+
+.progreso-tag {
+  padding:2px 6px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,0.5);
+  font-size:0.75rem;
+}
+.progreso-tag.diaria   { border-color:var(--accent); }
+.progreso-tag.semanal  { border-color:var(--accent-2); }
+.progreso-tag.historia { border-color:var(--gold); }
+.progreso-tag.boss     { border-color:var(--danger); }
+
+.progreso-diff {
+  font-size:0.78rem;
+  font-weight:600;
+}
+.progreso-diff.facil   { color:#bbf7d0; }
+.progreso-diff.media   { color:#fde68a; }
+.progreso-diff.dificil { color:#fecaca; }
+
+.progreso-small {
+  font-size:0.8rem;
+  color:var(--muted);
+}
+
+.progreso-badge {
+  padding:2px 6px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,0.6);
+  font-size:0.72rem;
+}
+.progreso-badge.done { border-color:var(--accent-2); color:var(--accent-2); }
+.progreso-badge.lock { border-color:rgba(148,163,184,0.4); color:var(--muted); }
+
+.progreso-record-value {
+  font-size:1.6rem;
+  font-weight:700;
+  margin:4px 0;
+}
+
+.progreso-trophy-icon { font-size:2rem; }
+.progreso-trophy-name {
+  font-size:0.9rem;
+  font-weight:600;
+}
+
+@media (max-width: 900px){
+  .progreso-root { flex-direction:column; }
+  .progreso-main { max-height:none; }
+}
+/* ===== Personaje: layout RPG con slots ===== */
+
+.char-page-header{
+  margin-bottom:10px;
+}
+#personaje .subtitle{
+  font-size:.9rem;
+  color:var(--muted);
+  margin:0 0 10px;
+}
+
+/* layout principal */
+.char-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(0,1.7fr);
+  gap:16px;
+  align-items:flex-start;
+}
+.char-left{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* --- Resumen --- */
+.char-summary{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.char-header{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.char-avatar{
+  width:52px;
+  height:52px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.8rem;
+  background:rgba(255,255,255,0.05);
+}
+.char-name{
+  font-weight:600;
+  font-size:1.05rem;
+}
+.char-role{
+  font-size:.85rem;
+  color:var(--muted);
+}
+.char-meta{
+  margin-top:4px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  font-size:.8rem;
+}
+.char-meta span{
+  padding:2px 8px;
+  border-radius:999px;
+  background:#020617;
+  border:1px solid rgba(148,163,184,0.5);
+}
+
+/* barras */
+.char-bars{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:.85rem;
+}
+.char-bar-row,
+.char-exp-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:8px;
+  align-items:center;
+}
+.char-bar{
+  position:relative;
+  height:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.06);
+  overflow:hidden;
+}
+.char-bar-fill{
+  position:absolute;
+  inset:0;
+  width:50%;
+  border-radius:inherit;
+}
+.char-bar-health{ background:#f97373; }
+.char-bar-energy{ background:#38bdf8; }
+.char-bar-exp-fill{
+  background:linear-gradient(90deg,#22c55e,#a855f7);
+}
+.char-bar-val{
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+/* stats */
+.char-stats{
+  margin-top:6px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:6px 12px;
+}
+.char-stat{
+  display:flex;
+  justify-content:space-between;
+  font-size:.85rem;
+}
+
+/* --- Bonos del equipo --- */
+.char-bottom-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.char-bonuses h3{
+  margin:0 0 6px;
+}
+.char-equip-sum{
+  font-size:.8rem;
+  color:var(--muted);
+}
+.char-bonus-list{
+  margin:4px 0 6px;
+  padding-left:18px;
+  font-size:.85rem;
+}
+.char-bonus-list li{
+  margin-bottom:2px;
+  display:flex;
+  justify-content:space-between;
+}
+.char-bonus-list span{
+  color:var(--accent-2);
+  font-size:.8rem;
+}
+.char-bonuses-note{
+  margin:4px 0 0;
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+/* --- Resumen RPG --- */
+.char-rpg h3{
+  margin:0 0 4px;
+}
+.char-rpg-list{
+  margin:4px 0;
+  padding-left:18px;
+  font-size:.85rem;
+}
+.char-rpg-list li{
+  margin-bottom:2px;
+}
+.char-rpg-tags{
+  margin-top:8px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+/* ===== Equipamiento / slots ===== */
+
+.char-equip-card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.char-equip-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+}
+.char-equip-header h3{
+  margin:0;
+}
+.char-equip-sub{
+  font-size:.8rem;
+  color:var(--muted);
+}
+.char-equip-section{
+  margin-top:4px;
+}
+.char-equip-section-title{
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+/* grid de slots */
+.slot-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+.slot{
+  min-height:90px;
+  border-radius:12px;
+  padding:6px 8px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:rgba(0,0,0,0.15);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:transform .1s ease, box-shadow .1s ease, border-color .1s ease;
+}
+.slot:hover{
+  transform:translateY(-1px);
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+  border-color:var(--accent);
+}
+.slot-label{
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--muted);
+}
+.slot-icon{
+  font-size:1.4rem;
+  margin:2px 0;
+}
+.slot-name{
+  font-size:.85rem;
+  font-weight:500;
+}
+.slot-desc{
+  font-size:.75rem;
+  color:var(--muted);
+}
+.slot-empty{
+  opacity:0.6;
+}
+
+/* bolsillos rápidos */
+.char-quickbar{
+  margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.1);
+  padding-top:8px;
+}
+.char-quickbar-title{
+  font-size:.8rem;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+.char-quickbar-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.quick-slot{
+  font-size:.8rem;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+}
+.quick-slot-empty{
+  opacity:0.6;
+}
+
+.char-footer-note{
+  margin-top:10px;
+  text-align:center;
+}
+
+/* responsive */
+@media (max-width:1100px){
+  .char-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+@media (max-width:900px){
+  .char-bottom-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .slot-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width:600px){
+  .slot-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+/* =========================
+   Pestaña PERSONAJE — ajustes de layout
+   ========================= */
+
+/* El panel de personaje no ocupa toda la pantalla */
+#personaje {
+  max-width: 1100px;
+  margin: 0 auto;          /* centrado dentro de main */
+}
+
+/* (Opcional / futuro) contenedor de stats en formato lista compacta.
+   Si más adelante usamos .char-stat-row en el HTML, ya estará listo. */
+
+#personaje .char-stat-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 16px;
+}
+
+#personaje .char-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  font-size: 0.85rem;
+}
+
+#personaje .char-stat-left {
+  display: flex;
+  flex-direction: column;
+}
+
+#personaje .char-stat-label {
+  font-weight: 500;
+}
+
+#personaje .char-stat-desc {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+#personaje .char-stat-value {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* En móvil, stats en una sola columna */
+@media (max-width: 900px) {
+  #personaje .char-stat-list {
+    grid-template-columns: 1fr;
+  }
+}
+.slot-equip {
+  cursor: pointer;
+}
+
+.slot-equip-on {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(125,211,252,0.6);
+}

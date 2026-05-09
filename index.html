@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Granja — v8 (Cocina + Buffs)</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profesiones.css" />
+  <link rel="stylesheet" href="css/casa.css">
+</head>
+<body class="theme-default">
+  <header class="topbar">
+    <div class="brand">🌾 Mi Granja <span class="tag">v8 Cocina + Buffs</span></div>
+    <div class="hud">
+      <div class="pill">💰 <span id="hud-coins">0</span></div>
+      <div class="pill">📅 Día <span id="hud-day">1</span></div>
+      <div class="pill">⏱️ <span id="hud-time">00:00</span></div>
+      <div class="pill" id="hud-weather">☀️ Soleado</div>
+      <div class="pill" id="hud-tools">🪓⛏️🚜</div>
+      <div class="pill">🏅 Rep: <span id="hud-rep-val">0</span></div>
+      <div class="pill">🔥 Racha: <span id="hud-streak">0</span> (Mejor <span id="hud-best-streak">0</span>)</div>
+      <div class="pill" id="hud-buffs">Buffs: —</div>
+      <button class="btn ghost" id="btn-save">💾 Guardar</button>
+      <button class="btn ghost" id="btn-reset">♻️ Reiniciar</button>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab on" data-tab="pueblo">🏘️ Pueblo</button>
+    <button class="tab" data-tab="personaje">Personaje</button>
+    <button class="tab" data-tab="campos">🌱 Campos</button>
+    <button class="tab" data-tab="bosque">🌲 Bosque</button>
+    <button class="tab" data-tab="mina">⛏️ Mina</button>
+    <button class="tab" data-tab="corrales">🐄 Corrales</button>
+    <button class="tab" data-tab="tienda">🛒 Tienda</button>
+    <button class="tab" data-tab="casa">🏡 Casa</button>
+    <button class="tab" data-tab="cocina">🍳 Cocina</button>
+    <button class="tab" data-tab="progreso">⭐ Progreso</button>
+    <button class="tab" data-tab="apariencia">🎨 Apariencia</button>
+    <button class="tab" data-tab="inventario">🎒 Inventario</button>
+    <button class="tab" data-tab="herramientas">🛠️ Herramientas</button>
+  </nav>
+
+  <main>
+    <section class="panel on" id="pueblo"></section>
+
+    <!-- 🔥 NUEVA PESTAÑA PERSONAJE COMPLETA -->
+    <section class="panel" id="personaje">
+      <div class="char-page-header">
+        <h2 class="title">Personaje</h2>
+        <p class="subtitle">
+          Resumen RPG del aldeano + slots de equipo para armas, armadura y objetos.
+        </p>
+      </div>
+
+      <div class="char-grid">
+        <!-- COLUMNA IZQUIERDA: RESUMEN + BONOS + RESUMEN RPG -->
+        <div class="char-left">
+          <!-- RESUMEN -->
+          <div class="card char-summary">
+            <div class="char-header">
+              <div class="char-avatar">👨‍🌾</div>
+              <div class="char-header-main">
+                <div class="char-name">Francis</div>
+                <div class="char-role">Granjero & Minero aprendiz</div>
+                <div class="char-meta">
+                  <span>⚔️ Nivel 1</span>
+                  <span>🏅 Reputación 0</span>
+                  <span>🏆 Logros 3/12</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- barras HP / energía / EXP -->
+            <div class="char-bars">
+              <div class="char-bar-row">
+                <span>Salud</span>
+                <div class="char-bar">
+                  <div class="char-bar-fill char-bar-health" style="width: 68%;"></div>
+                </div>
+                <span class="char-bar-val">68 / 80</span>
+              </div>
+              <div class="char-bar-row">
+                <span>Energía</span>
+                <div class="char-bar">
+                  <div class="char-bar-fill char-bar-energy" style="width: 75%;"></div>
+                </div>
+                <span class="char-bar-val">9 / 12</span>
+              </div>
+              <div class="char-exp-row">
+                <span>Experiencia global</span>
+                <div class="char-bar char-bar-exp">
+                  <div class="char-bar-fill char-bar-exp-fill" style="width: 62%;"></div>
+                </div>
+                <span class="char-bar-val">180 / 290</span>
+              </div>
+            </div>
+
+            <!-- stats principales -->
+            <div class="char-stats">
+              <div class="char-stat">
+                <span>💪 Fuerza</span>
+                <strong>8</strong>
+              </div>
+              <div class="char-stat">
+                <span>🛡️ Defensa</span>
+                <strong>6</strong>
+              </div>
+              <div class="char-stat">
+                <span>🌾 Agricultura</span>
+                <strong>9</strong>
+              </div>
+              <div class="char-stat">
+                <span>🐄 Ranchero</span>
+                <strong>7</strong>
+              </div>
+              <div class="char-stat">
+                <span>⛏️ Minería</span>
+                <strong>8</strong>
+              </div>
+              <div class="char-stat">
+                <span>💰 Comercio</span>
+                <strong>5</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- FILA INFERIOR IZQUIERDA: BONOS DEL EQUIPO + RESUMEN RPG -->
+          <div class="grid char-bottom-grid">
+            <!-- BONOS DEL EQUIPO -->
+            <div class="card char-bonuses">
+              <div class="row space">
+                <h3>Bonos del equipo</h3>
+                <span class="char-equip-sum">Suma de slots equipados</span>
+              </div>
+              <ul class="char-bonus-list">
+                <li>🌾 Campesino equipado <span>+7% cosechas</span></li>
+                <li>🪓 Herramientas listas <span>+5% tala</span></li>
+                <li>⛏️ Minería estable <span>+4% hierro</span></li>
+                <li>🎒 Mochila y organización <span>+4 espacio inventario</span></li>
+              </ul>
+              <p class="char-bonuses-note">
+                Más adelante estos valores saldrán de lo que tenga realmente equipado el jugador
+                en cada slot.
+              </p>
+            </div>
+
+            <!-- RESUMEN RPG -->
+            <div class="card char-rpg">
+              <h3>Resumen RPG</h3>
+              <p class="small-text">
+                Este panel se conectará con:
+              </p>
+              <ul class="char-rpg-list">
+                <li>Misiones diarias / épicas</li>
+                <li>Logros y trofeos</li>
+                <li>Herrero / Carpintero</li>
+                <li>Comercio y ventas</li>
+              </ul>
+
+              <p class="small-text" style="margin-top:6px">
+                La idea es que aquí veas de un vistazo:
+                <strong>quién eres, qué llevas puesto y qué bonos tienes activos.</strong>
+              </p>
+
+              <div class="char-rpg-tags">
+                <button class="btn small ghost">Vista general</button>
+                <button class="btn small ghost">+Reputación</button>
+                <button class="btn small ghost">Buffs pasivos</button>
+                <button class="btn small ghost">Mejor equipo</button>
+                <button class="btn small ghost">+Ventas</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: EQUIPAMIENTO / SLOTS -->
+        <div class="card char-equip-card">
+          <div class="char-equip-header">
+            <h3>Equipamiento</h3>
+            <span class="char-equip-sub">
+              Haz clic en un slot (más adelante arrastrar/soltar).
+            </span>
+          </div>
+
+          <!-- COMBATE / ARMADURA -->
+          <div class="char-equip-section">
+            <div class="char-equip-section-title">COMBATE / ARMADURA</div>
+            <div class="slot-grid">
+              <div class="slot">
+                <div class="slot-label">Arma</div>
+                <div class="slot-icon">🗡️</div>
+                <div class="slot-name">Cuchillo rústico</div>
+                <div class="slot-desc">Daño +1</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Armadura</div>
+                <div class="slot-icon">🧥</div>
+                <div class="slot-name">Chaleco de cuero</div>
+                <div class="slot-desc">Defensa +2</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Casco</div>
+                <div class="slot-icon slot-empty">—</div>
+                <div class="slot-name slot-empty">Vacío</div>
+                <div class="slot-desc">Protege la cabeza</div>
+              </div>
+
+              <div class="slot">
+                <div class="slot-label">Botas</div>
+                <div class="slot-icon slot-empty">—</div>
+                <div class="slot-name slot-empty">Vacío</div>
+                <div class="slot-desc">Velocidad / bosque</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Guantes</div>
+                <div class="slot-icon slot-empty">—</div>
+                <div class="slot-name slot-empty">Vacío</div>
+                <div class="slot-desc">Mejor trabajo fino</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Capa</div>
+                <div class="slot-icon slot-empty">—</div>
+                <div class="slot-name slot-empty">Vacío</div>
+                <div class="slot-desc">Clima / resistencia</div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="sep" />
+
+          <!-- ACCESORIOS / HERRAMIENTAS -->
+          <div class="char-equip-section">
+            <div class="char-equip-section-title">ACCESORIOS / HERRAMIENTAS</div>
+            <div class="slot-grid">
+              <div class="slot">
+                <div class="slot-label">Anillo</div>
+                <div class="slot-icon">💍</div>
+                <div class="slot-name">Anillo del granjero</div>
+                <div class="slot-desc">+5% cosechas</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Amuleto</div>
+                <div class="slot-icon slot-empty">🔮</div>
+                <div class="slot-name slot-empty">Vacío</div>
+                <div class="slot-desc">Bonos especiales</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Mochila</div>
+                <div class="slot-icon">🎒</div>
+                <div class="slot-name">Mochila simple</div>
+                <div class="slot-desc">+4 espacio</div>
+              </div>
+
+              <div class="slot">
+                <div class="slot-label">Hacha</div>
+                <div class="slot-icon">🪓</div>
+                <div class="slot-name">Hacha básica</div>
+                <div class="slot-desc">Tala x1.0</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Pico</div>
+                <div class="slot-icon">⛏️</div>
+                <div class="slot-name">Pico básico</div>
+                <div class="slot-desc">Mina x1.0</div>
+              </div>
+              <div class="slot">
+                <div class="slot-label">Azadón</div>
+                <div class="slot-icon">🚜</div>
+                <div class="slot-name">Azadón básico</div>
+                <div class="slot-desc">Campo x1.0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bolsillos rápidos -->
+          <div class="char-quickbar">
+            <div class="char-quickbar-title">Bolsillos rápidos / accesos directos</div>
+            <div class="char-quickbar-row">
+              <div class="quick-slot">1 · 🥖 Pan (+vida)</div>
+              <div class="quick-slot">2 · 🧪 Poción energía</div>
+              <div class="quick-slot">3 · 🍄 Hongos</div>
+              <div class="quick-slot quick-slot-empty">4 · Vacío</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="char-footer-note small-text">
+        Maqueta visual de la pestaña <strong>Personaje</strong> con slots de equipamiento.
+        Después lo conectamos al game, herramientas, inventario y logros reales.
+      </p>
+    </section>
+
+    <!-- 🔥 FIN PERSONAJE -->
+
+    <section class="panel" id="campos"></section>
+    <section class="panel" id="bosque"></section>
+    <section class="panel" id="mina"></section>
+    <section class="panel" id="corrales"></section>
+    <section class="panel" id="tienda"></section>
+    <section class="panel" id="casa"></section>
+    <section class="panel" id="cocina"></section>
+    <section class="panel" id="progreso"></section>
+    <section class="panel" id="apariencia"></section>
+    <section class="panel" id="inventario"></section>
+    <section class="panel" id="herramientas"></section>
+  </main>
+
+  <div id="toast-container"></div>
+  <div id="autosave-indicator" class="autosave hidden">Guardado ✓</div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
