@@ -1178,3 +1178,109 @@ main{
   border-color: var(--accent);
   box-shadow: 0 0 0 1px rgba(125,211,252,0.6);
 }
+
+/* --- MEJORA PESTAÑA PERSONAJE --- */
+
+/* Contenedor principal a pantalla completa */
+#personaje.panel {
+    max-width: 1400px; /* Ancho máximo para que no se deforme en monitores ultra-wide */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Título y subtítulo */
+.char-page-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+/* Grid principal: 2 columnas (Izquierda stats, Derecha equipo) */
+.char-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* La columna de equipo es un poco más ancha */
+    gap: 30px;
+    align-items: start;
+}
+
+/* Ajuste para móviles: una sola columna */
+@media (max-width: 1000px) {
+    .char-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tarjetas (Cards) con efecto de cristal */
+.card {
+    background: rgba(30, 30, 35, 0.9);
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* Diseño de los Slots de Equipamiento */
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.slot {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed #555;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.slot:hover {
+    border-color: #ffd700; /* Dorado al pasar el mouse */
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.slot-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.slot-icon {
+    font-size: 2rem;
+    margin: 5px 0;
+}
+
+.slot-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.slot-desc {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+/* Barras de vida y energía más grandes */
+.char-bar {
+    height: 15px;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.char-bar-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.char-bar-health { background: linear-gradient(90deg, #ff4b2b, #ff416c); }
+.char-bar-energy { background: linear-gradient(90deg, #f7971e, #ffd200); }
+.char-bar-exp-fill { background: linear-gradient(90deg, #00b4db, #0083b0); }
