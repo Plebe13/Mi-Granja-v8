@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Granja — v8 (Cocina + Buffs)</title>
+    <title>Mi Granja — v8 (Plaza Central)</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/profesiones.css" />
     <link rel="stylesheet" href="css/casa.css">
@@ -11,13 +11,13 @@
 </head>
 <body class="theme-default">
     <header class="topbar">
-        <div class="brand">🌾 Mi Granja <span class="tag">v8 Cocina + Buffs</span></div>
+        <div class="brand">🌾 Mi Granja <span class="tag">v8</span></div>
         <div class="hud">
             <div class="pill">💰 <span id="hud-coins">0</span></div>
             <div class="pill">📅 Día <span id="hud-day">1</span></div>
             <div class="pill">⏱️ <span id="hud-time">00:00</span></div>
             <div class="pill" id="hud-weather">☀️ Soleado</div>
-            <div class="pill" id="hud-tools">🪓⛏️🚜</div>
+            <div class="pill" id="hud-tools">🛠️</div>
             <div class="pill">🏅 Rep: <span id="hud-rep-val">0</span></div>
             <div class="pill">🔥 Racha: <span id="hud-streak">0</span></div>
             <div class="pill" id="hud-buffs">Buffs: —</div>
@@ -46,17 +46,20 @@
         <section class="panel on" id="pueblo">
             <div class="village-header">
                 <h2 class="title">Plaza Central del Pueblo</h2>
-                <p class="subtitle">Habla con los maestros artesanos y gestiona tus oficios.</p>
+                <p class="subtitle">Visita a los maestros artesanos para mejorar tu equipo.</p>
             </div>
             
             <div class="village-container">
-                <div class="village-grid" id="profesiones-panel">
-                    </div>
+                <div class="village-grid" id="profesiones-panel"></div>
 
                 <aside class="village-sidebar">
                     <div class="card">
                         <h3>📋 Tablón de Anuncios</h3>
-                        <p class="small-text">Próximamente: Misiones diarias y pedidos del pueblo.</p>
+                        <div class="sidebar-content">
+                            <p class="small-text">🔔 No hay misiones nuevas hoy.</p>
+                            <hr style="opacity: 0.1; margin: 10px 0;">
+                            <p class="small-text">💡 Tip: Mejora tu hacha en el Carpintero para talar robles.</p>
+                        </div>
                     </div>
                 </aside>
             </div>
@@ -66,8 +69,7 @@
 
         <section class="panel" id="personaje">
             <div class="char-page-header">
-                <h2 class="title">Personaje</h2>
-                <p class="subtitle">Resumen RPG y equipamiento del aldeano.</p>
+                <h2 class="title">Estado del Personaje</h2>
             </div>
             <div class="char-grid">
                 <div class="char-left">
@@ -76,11 +78,7 @@
                             <div class="char-avatar">👨‍🌾</div>
                             <div class="char-header-main">
                                 <div class="char-name">Francis</div>
-                                <div class="char-role">Granjero aprendiz</div>
-                                <div class="char-meta">
-                                    <span>⚔️ Nivel 1</span>
-                                    <span>🏅 Reputación 0</span>
-                                </div>
+                                <div class="char-role">Aprendiz de Granjero</div>
                             </div>
                         </div>
                         <div class="char-bars">
@@ -93,32 +91,16 @@
                                 <div class="char-bar"><div class="char-bar-fill char-bar-energy" style="width: 100%;"></div></div>
                             </div>
                         </div>
-                        <div class="char-stats">
-                            <div class="char-stat"><span>💪 Fuerza</span> <strong>8</strong></div>
-                            <div class="char-stat"><span>🛡️ Defensa</span> <strong>6</strong></div>
-                            <div class="char-stat"><span>🌾 Agronomía</span> <strong>9</strong></div>
-                        </div>
-                    </div>
-
-                    <div class="grid char-bottom-grid">
-                        <div class="card char-bonuses">
-                            <h3>Bonos activos</h3>
-                            <ul class="char-bonus-list">
-                                <li>Equipamiento básico detectado.</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
                 <div class="card char-equip-card">
-                    <h3>Equipamiento</h3>
-                    <div class="char-equip-section">
-                        <div class="slot-grid">
-                            <div class="slot"><div class="slot-label">Arma</div><div class="slot-icon">🗡️</div></div>
-                            <div class="slot"><div class="slot-label">Pecho</div><div class="slot-icon">🧥</div></div>
-                            <div class="slot"><div class="slot-label">Cabeza</div><div class="slot-icon slot-empty">—</div></div>
-                            <div class="slot"><div class="slot-label">Pies</div><div class="slot-icon slot-empty">—</div></div>
-                        </div>
+                    <h3>Equipamiento Actual</h3>
+                    <div class="slot-grid">
+                        <div class="slot"><small>Arma</small><div class="slot-icon">🗡️</div></div>
+                        <div class="slot"><small>Pecho</small><div class="slot-icon">🧥</div></div>
+                        <div class="slot"><small>Cabeza</small><div class="slot-icon">—</div></div>
+                        <div class="slot"><small>Pies</small><div class="slot-icon">—</div></div>
                     </div>
                 </div>
             </div>
