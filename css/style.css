@@ -1375,3 +1375,42 @@ main{
         order: -1; /* El tablón sale arriba en el móvil */
     }
 }
+
+/* FORZAR DISEÑO DE PLAZA CENTRAL */
+#pueblo .village-container {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    min-height: 80vh;
+}
+
+#pueblo .village-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 20px;
+    flex: 3;
+}
+
+/* Tarjeta de Oficio */
+#pueblo .card.profession-card {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid #deff9a !important;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+#pueblo .card.profession-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(222, 255, 154, 0.2);
+}
+
+#pueblo .village-sidebar {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 15px;
+    border-left: 4px solid #deff9a;
+}
