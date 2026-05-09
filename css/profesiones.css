@@ -1,68 +1,77 @@
-/* 1. DISEÑO DE LA GRILLA DEL PUEBLO */
+/* 1. DISEÑO DE LA PLAZA (TARJETAS DE OFICIO) */
 #profesiones-panel {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
     gap: 20px !important;
-    padding: 10px !important;
+    padding: 20px !important;
 }
 
-/* 2. TARJETAS DE OFICIO (Herrero, Carpintero, etc.) */
-/* Solo se ven grandes si NO están dentro de una receta */
+/* Solo los botones que son HIJOS DIRECTOS del panel (Los NPCs) */
 #profesiones-panel > .prof-btn {
-    min-height: 150px !important;
+    min-height: 160px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    background: rgba(30, 41, 59, 0.9) !important;
+    background: rgba(30, 41, 59, 0.8) !important;
     border: 2px solid #deff9a !important;
     border-radius: 15px !important;
-    font-weight: bold !important;
-    font-size: 1.1rem !important;
 }
 
-/* 3. CONTENEDOR DE RECETAS (Cuando entras al Herrero) */
+/* Imágenes grandes SOLO para los NPCs de la plaza */
+#profesiones-panel > .prof-btn img {
+    width: 64px !important;
+    height: 64px !important;
+    margin-bottom: 10px;
+}
+
+/* 2. RECETAS (LISTADO INTERNO) */
 .receta-item {
-    background: rgba(15, 23, 42, 0.6) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 12px !important;
-    padding: 15px !important;
-    margin: 15px 0 !important;
+    all: initial; /* Resetea cualquier herencia extra */
     display: block !important;
-    width: 100% !important;
-    text-align: left !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    padding: 15px !important;
+    margin: 10px 0 !important;
+    font-family: 'Urbanist', sans-serif !important;
+    color: white !important;
 }
 
-/* 4. EL BOTÓN "CRAFTEAR" (DENTRO DE LA RECETA) */
-/* Forzamos que NO sea una tarjeta gigante */
-.receta-item .prof-btn {
-    all: revert !important; /* Resetea estilos de tarjeta */
+/* 3. BOTÓN DE CRAFTEAR (COMPACTO) */
+/* Usamos el nombre del panel para que tenga prioridad pero sea específico */
+#pueblo .receta-item .prof-btn {
+    all: revert !important;
     display: inline-flex !important;
-    height: 40px !important;
-    min-height: 40px !important;
-    width: auto !important;
-    background-color: #deff9a !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 15px !important;
+    background: #deff9a !important;
     color: #000 !important;
-    padding: 0 20px !important;
-    border-radius: 8px !important;
-    border: none !important;
+    border-radius: 6px !important;
     font-weight: bold !important;
+    font-size: 13px !important;
+    border: none !important;
     cursor: pointer !important;
-    margin-top: 10px !important;
     flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
 }
 
-/* Iconos pequeños para las recetas */
+/* 4. IMÁGENES DENTRO DE RECETAS (PEQUEÑAS) */
+/* Esto NO afectará al inventario porque está dentro de .receta-item */
 .receta-item img {
     width: 24px !important;
     height: 24px !important;
-    margin-right: 8px !important;
+    margin: 0 !important;
+    display: inline-block !important;
 }
 
-/* 5. SIDEBAR (TABLÓN) */
-.village-sidebar {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 20px;
-    border-left: 4px solid #deff9a;
+/* Títulos de recetas */
+.receta-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
