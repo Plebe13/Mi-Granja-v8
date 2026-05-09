@@ -2,22 +2,29 @@ import { game, TIER, repairTool, sharpenTool, getToolState, toast } from './main
 import { getToolDurabilityBonusPct } from './achievements.js';
 import { renderProfessionsPanel } from './profesiones.js';
 
-/* =========================
-   🌆 Render Pueblo
-   ========================= */
-
+/* ========================= 🌆 Render Pueblo ========================= */
 export function renderPueblo() {
-  const el = document.getElementById('pueblo');
-
-  // Ahora el pueblo muestra el panel de oficios
-  el.innerHTML = `
-    <h2 class="title">Pueblo — Oficios</h2>
-    <div id="profesiones-panel"></div>
-    <div id="npc-dialog"></div>
-  `;
-
-  // Dibujamos el sistema de profesiones (herrero, carpintero, cocinero, herbalista)
-  renderProfessionsPanel('profesiones-panel');
+    // Buscamos el panel de profesiones que ya existe en el index.html
+    const grid = document.getElementById('profesiones-panel');
+    
+    if (grid) {
+        // En lugar de borrar todo el "pueblo", solo limpiamos y llenamos la cuadrícula
+        grid.innerHTML = ""; 
+        renderProfessionsPanel('profesiones-panel');
+    } else {
+        // Si por alguna razón no existe (emergencia), lo creamos
+        const el = document.getElementById('pueblo');
+        el.innerHTML = `
+            <div class="village-header">
+                <h2 class="title">Plaza Central del Pueblo</h2>
+            </div>
+            <div class="village-container">
+                <div id="profesiones-panel" class="village-grid"></div>
+            </div>
+            <div id="npc-dialog"></div>
+        `;
+        renderProfessionsPanel('profesiones-panel');
+    }
 }
 
 /* =========================
