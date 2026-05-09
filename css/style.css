@@ -1284,3 +1284,94 @@ main{
 .char-bar-health { background: linear-gradient(90deg, #ff4b2b, #ff416c); }
 .char-bar-energy { background: linear-gradient(90deg, #f7971e, #ffd200); }
 .char-bar-exp-fill { background: linear-gradient(90deg, #00b4db, #0083b0); }
+
+
+/* ==========================================================================
+   NUEVO DISEÑO DEL PUEBLO (VILLAGE)
+   ========================================================================== */
+
+.village-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
+    border-radius: 15px;
+}
+
+.village-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Rejilla de Oficios (Herrero, Carpintero, etc.) */
+.village-grid {
+    flex: 3; /* Toma más espacio que la sidebar */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Tarjetas de Oficio Modernas */
+.village-grid .card {
+    background: rgba(30, 41, 59, 0.7); /* Azul oscuro traslúcido */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+}
+
+.village-grid .card:hover {
+    transform: translateY(-8px);
+    border-color: #deff9a; /* Tu color verde lima */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: rgba(30, 41, 59, 0.9);
+}
+
+/* Sidebar (Tablón de Anuncios) */
+.village-sidebar {
+    flex: 1;
+    min-width: 250px;
+    position: sticky;
+    top: 20px;
+}
+
+.village-sidebar .card {
+    background: #1e293b;
+    border-left: 4px solid #deff9a;
+    padding: 20px;
+}
+
+/* Ajustes de botones dentro del pueblo */
+.village-grid button.btn {
+    background: #deff9a;
+    color: #0f172a;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.village-grid button.btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* RESPONSIVE: En móviles se pone uno debajo de otro */
+@media (max-width: 900px) {
+    .village-container {
+        flex-direction: column;
+    }
+    
+    .village-sidebar {
+        width: 100%;
+        order: -1; /* El tablón sale arriba en el móvil */
+    }
+}
