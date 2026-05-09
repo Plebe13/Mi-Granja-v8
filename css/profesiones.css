@@ -1,216 +1,59 @@
-/* profesiones.css
-   Estilos específicos para el panel del Pueblo + sistema de oficios.
-*/
+/* ==========================================================================
+   profesiones.css - REDISEÑO PLAZA CENTRAL
+   ========================================================================== */
 
-/* ====== Layout general del panel de oficios ====== */
-
-.prof-panel {
-  display: grid;
-  grid-template-columns: minmax(180px, 220px) 1fr;
-  gap: 12px;
-  align-items: flex-start;
-  margin-top: 8px;
+#profesiones-panel {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
 }
 
-.prof-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* Botones de oficios (Herrero / Carpintero / etc.) */
+/* Transformamos los botones viejos en TARJETAS */
 .prof-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid #d7c4a9;
-  background: #f9f5ec;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.05s ease;
-}
-
-.prof-btn span.icon {
-  font-size: 1.1rem;
-}
-
-.prof-btn.on {
-  background: #d7c4a9;
-  color: #221a16;
-  font-weight: 600;
+    background: rgba(23, 25, 33, 0.8) !important;
+    border: 1px solid rgba(222, 255, 154, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 30px 20px !important;
+    display: flex;
+    flex-direction: column !important; /* Icono arriba, texto abajo */
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #fff !important;
+    height: auto !important;
+    min-height: 180px;
 }
 
 .prof-btn:hover {
-  background: #e9ddc5;
-  transform: translateY(-1px);
+    transform: translateY(-8px);
+    border-color: #deff9a !important;
+    background: rgba(222, 255, 154, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Columna principal (info oficio + cola + recetas) */
-.prof-main {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Estilo para el icono dentro de la tarjeta */
+.prof-btn img, .prof-btn .icon {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 0 5px rgba(222, 255, 154, 0.5));
 }
 
-.prof-header h3 {
-  margin: 0 0 4px 0;
-  font-size: 1.05rem;
+/* Estilo para el nombre del oficio */
+.prof-btn span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.prof-header .kv {
-  margin-top: 2px;
+/* Contenedor de la Sidebar (Tablón) */
+.village-sidebar {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
 }
-
-/* Barra de nivel del oficio */
-.prof-level-bar {
-  height: 6px;
-  border-radius: 999px;
-  background: #e0d3c1;
-  overflow: hidden;
-}
-
-.prof-level-bar > div {
-  height: 100%;
-  background: #b99155;
-}
-
-/* ====== NUEVO: Recetas en Grid (4 por fila) ====== */
-
-.prof-recipes {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 260px)); /* 7 recetas por fila */
-  gap: 16px;
-
-  /* estas son las 3 líneas que me preguntaste */
-  grid-auto-flow: row;
-  justify-content: center;
-  justify-items: center;
-}
-
-
-/* Tarjetas */
-.prof-recipes > .card {
-  height: 100%;
-}
-
-/* Título receta */
-.prof-recipe-title {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
-}
-
-.prof-recipe-title span.icon {
-  font-size: 1.2rem;
-}
-
-/* Chip etiqueta */
-.prof-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 7px;
-  border-radius: 999px;
-  background: #efe4cf;
-  font-size: 0.75rem;
-}
-
-/* Coste / Resultado */
-.prof-io {
-  font-size: 0.8rem;
-  margin: 2px 0;
-}
-
-.prof-io strong {
-  font-weight: 600;
-}
-
-/* Pie con botón */
-.prof-foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 6px;
-  margin-top: 6px;
-}
-
-.prof-foot .small-text {
-  font-size: 0.75rem;
-}
-
-/* ====== Cola de producción ====== */
-
-.craft-queue {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin: 6px 0 4px;
-}
-
-.craft-job {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.18);
-  font-size: 0.8rem;
-}
-
-.craft-job .craft-eta {
-  font-weight: 600;
-}
-
-/* ====== Responsive ====== */
-
-/* 6 por fila */
-@media (max-width: 1900px) {
-  .prof-recipes {
-    grid-template-columns: repeat(6, minmax(180px, 1fr));
-  }
-}
-
-/* 5 por fila */
-@media (max-width: 1650px) {
-  .prof-recipes {
-    grid-template-columns: repeat(5, minmax(180px, 1fr));
-  }
-}
-
-/* 4 por fila */
-@media (max-width: 1450px) {
-  .prof-recipes {
-    grid-template-columns: repeat(4, minmax(180px, 1fr));
-  }
-}
-
-/* 3 por fila */
-@media (max-width: 1200px) {
-  .prof-recipes {
-    grid-template-columns: repeat(3, minmax(180px, 1fr));
-  }
-}
-
-/* 2 por fila */
-@media (max-width: 900px) {
-  .prof-recipes {
-    grid-template-columns: repeat(2, minmax(180px, 1fr));
-  }
-}
-
-/* 1 por fila móvil */
-@media (max-width: 600px) {
-  .prof-recipes {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-}
-.prof-recipes {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(180px, 1fr));
-  gap: 14px;
-  width: 100%;
-  margin-top: 10px;
-  box-sizing: border-box;
-  contain: layout;
