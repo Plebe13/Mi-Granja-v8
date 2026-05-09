@@ -1,105 +1,45 @@
-/* ==========================================================================
-   profesiones.css - REDISEÑO PLAZA CENTRAL
-   ========================================================================== */
-
+/* CONTENEDOR PRINCIPAL */
 #profesiones-panel {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-    gap: 20px;
-    padding: 20px;
-    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 15px !important;
+    width: 100% !important;
 }
 
-/* Transformamos los botones viejos en TARJETAS */
-.prof-btn {
-    background: rgba(23, 25, 33, 0.8) !important;
-    border: 1px solid rgba(222, 255, 154, 0.3) !important;
-    border-radius: 16px !important;
-    padding: 30px 20px !important;
-    display: flex;
-    flex-direction: column !important; /* Icono arriba, texto abajo */
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    color: #fff !important;
-    height: auto !important;
-    min-height: 180px;
+/* BOTONES DE OFICIO (LAS TARJETAS GRANDES) */
+/* Solo afectamos a los botones que son HIJOS DIRECTOS del panel */
+#profesiones-panel > .prof-btn {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid #deff9a !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    min-height: 150px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-.prof-btn:hover {
-    transform: translateY(-8px);
-    border-color: #deff9a !important;
-    background: rgba(222, 255, 154, 0.1) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Estilo para el icono dentro de la tarjeta */
-.prof-btn img, .prof-btn .icon {
-    width: 60px;
-    height: 60px;
-    filter: drop-shadow(0 0 5px rgba(222, 255, 154, 0.5));
-}
-
-/* Estilo para el nombre del oficio */
-.prof-btn span {
-    font-size: 1.2rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-/* Contenedor de la Sidebar (Tablón) */
-.village-sidebar {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-    padding: 20px;
-    border: 1px dashed rgba(255, 255, 255, 0.1);
-}
-
-/* ==========================================================================
-   AJUSTE DE RECETAS (Hacerlas Compactas)
-   ========================================================================== */
-
-/* Contenedor de la receta */
+/* RECETAS (LAS TARJETAS PEQUEÑAS) */
 .receta-item {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05) !important;
+    margin-top: 10px !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
 }
 
-/* Título de la receta (Tónico ligero, etc.) */
-.receta-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.receta-header img {
-    width: 24px !important;
-    height: 24px !important;
-}
-
-/* Reducir los botones dentro de las recetas */
+/* BOTÓN DE CRAFTEAR (DENTRO DE RECETAS) */
 .receta-item .prof-btn {
-    min-height: auto !important; /* Quita el tamaño gigante de tarjeta */
-    height: 35px !important;     /* Altura pequeña */
-    padding: 5px 15px !important; /* Padding compacto */
-    flex-direction: row !important; /* Icono y texto en línea */
-    font-size: 0.9rem !important;
-    margin-top: 10px;
+    min-height: 40px !important; /* Altura normal */
+    flex-direction: row !important; /* Icono al lado del texto */
+    padding: 5px 15px !important;
+    background: #deff9a !important;
+    color: #000 !important;
     width: auto !important;
-    display: inline-flex;
+    margin: 10px auto 0 !important;
 }
 
-/* El icono dentro del botón de crafteo */
-.receta-item .prof-btn .icon, .receta-item .prof-btn img {
-    width: 20px !important;
-    height: 20px !important;
+/* OCULTAR TITULOS DUPLICADOS QUE GENERA EL JS */
+#pueblo h2:not(.title) {
+    display: none !important;
 }
