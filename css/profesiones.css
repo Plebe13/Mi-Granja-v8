@@ -6,7 +6,7 @@
     padding: 20px !important;
 }
 
-/* Solo los botones que son HIJOS DIRECTOS del panel (Los NPCs) */
+/* Solo los botones de los NPCs en la plaza (Tarjetas Grandes) */
 #profesiones-panel > .prof-btn {
     min-height: 160px !important;
     display: flex !important;
@@ -18,29 +18,26 @@
     border-radius: 15px !important;
 }
 
-/* Imágenes grandes SOLO para los NPCs de la plaza */
+/* Imágenes grandes SOLO para los NPCs (no afecta al inventario) */
 #profesiones-panel > .prof-btn img {
     width: 64px !important;
     height: 64px !important;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
-/* 2. RECETAS (LISTADO INTERNO) */
+/* 2. RECETAS (LISTADO INTERNO - COMPACTO) */
 .receta-item {
-    all: initial; /* Resetea cualquier herencia extra */
     display: block !important;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 10px !important;
     padding: 15px !important;
     margin: 10px 0 !important;
-    font-family: 'Urbanist', sans-serif !important;
-    color: white !important;
+    text-align: left !important;
 }
 
-/* 3. BOTÓN DE CRAFTEAR (COMPACTO) */
-/* Usamos el nombre del panel para que tenga prioridad pero sea específico */
-#pueblo .receta-item .prof-btn {
+/* Botón "Craftear" pequeño */
+.receta-item .prof-btn {
     all: revert !important;
     display: inline-flex !important;
     height: 36px !important;
@@ -50,7 +47,6 @@
     color: #000 !important;
     border-radius: 6px !important;
     font-weight: bold !important;
-    font-size: 13px !important;
     border: none !important;
     cursor: pointer !important;
     flex-direction: row !important;
@@ -58,20 +54,9 @@
     gap: 8px !important;
 }
 
-/* 4. IMÁGENES DENTRO DE RECETAS (PEQUEÑAS) */
-/* Esto NO afectará al inventario porque está dentro de .receta-item */
+/* Imágenes pequeñas dentro de recetas */
 .receta-item img {
     width: 24px !important;
     height: 24px !important;
     margin: 0 !important;
-    display: inline-block !important;
-}
-
-/* Títulos de recetas */
-.receta-header {
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
