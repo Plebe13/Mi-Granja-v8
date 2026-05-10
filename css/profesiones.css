@@ -3,6 +3,7 @@
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
     gap: 15px !important;
+    padding: 15px !important;
 }
 
 #profesiones-panel > .prof-btn {
@@ -16,13 +17,13 @@
     border-radius: 12px !important;
 }
 
-/* --- 2. EL TRUCO PARA LAS 5 COLUMNAS (Usando máxima prioridad) --- */
-/* Forzamos que CUALQUIER grid dentro del panel de profesiones tenga 5 columnas */
+/* --- 2. EL TRUCO PARA EL TAMAÑO 1/4 --- */
+/* Forzamos que CUALQUIER grid dentro del panel de profesiones tenga 4 columnas */
 #pueblo .grid, 
 #pueblo-recetas, 
 .prof-recipes {
     display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important; /* <--- Esto es lo que querías */
+    grid-template-columns: repeat(4, 1fr) !important; /* <--- Esto es lo que querías */
     gap: 10px !important;
     width: 100% !important;
     max-width: none !important;
