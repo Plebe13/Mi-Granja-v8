@@ -59,5 +59,51 @@
 
 .prof-foot .small-text {
     font-size: 0.6rem !important; /* Texto de tiempo/XP minúsculo */
+
+    /* --- LIMPIEZA DE ESPACIOS SUPERIORES --- */
+
+/* 1. Pegar el título al borde superior */
+.village-header {
+    margin-bottom: 2px !important;
+    padding: 0 !important;
+}
+.village-header .title { font-size: 1.1rem !important; margin: 0 !important; }
+.village-header .subtitle { display: none; } /* Ocultamos el subtítulo para ganar espacio */
+
+/* 2. Compactar el selector de oficios (Herrero, Carpintero...) */
+.prof-tabs {
+    margin-bottom: 5px !important;
+    gap: 5px !important;
+}
+.prof-tab-btn {
+    padding: 4px 8px !important;
+    font-size: 0.8rem !important;
+}
+
+/* 3. Reducir el bloque del Herrero (Nivel, XP, Progreso) */
+.prof-header {
+    padding: 6px 10px !important;
+    margin-bottom: 5px !important;
+}
+.prof-header h3 { font-size: 0.9rem !important; margin: 0 !important; }
+.prof-header p { font-size: 0.75rem !important; margin: 0 !important; line-height: 1.2; }
+
+/* 4. Barra de progreso más fina */
+.prof-level-bar {
+    height: 4px !important;
+    margin: 3px 0 !important;
+}
+
+/* 5. Sección de Producción y Recetas (Pegarlas) */
+.subtitle, .prof-main h3 {
+    margin: 4px 0 2px 0 !important;
+    font-size: 0.85rem !important;
+}
+
+/* 6. Línea divisoria casi invisible */
+hr.sep {
+    margin: 2px 0 !important;
+    opacity: 0.05;
+}
     opacity: 0.7;
 }
