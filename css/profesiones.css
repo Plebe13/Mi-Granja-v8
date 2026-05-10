@@ -1,109 +1,175 @@
-/* --- 3. CUADRÍCULA DE RECETAS (Súper Compacta) --- */
-.prof-recipes {
+/* ==========================================================================
+   ESTILO DE OFICIOS Y PLAZA CENTRAL - VERSIÓN MINI COMPACTA
+   ========================================================================== */
+
+/* --- 1. ESTRUCTURA DE LA PLAZA (Botones de NPCs) --- */
+#profesiones-panel {
     display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important; /* 5 columnas */
-    gap: 8px !important; /* Menos espacio entre tarjetas */
-    width: 100% !important;
-    margin-top: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: 10px !important;
+    padding: 10px !important;
 }
 
-/* --- 4. TARJETAS DE RECETA MINI --- */
-.prof-recipes .card {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 8px !important;
-    padding: 6px !important; /* Padding mínimo */
+#profesiones-panel > .prof-btn {
+    min-height: 100px !important;
+    padding: 10px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
-    min-height: 160px !important; /* Altura mucho más baja */
-    overflow: hidden;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 2px solid #deff9a !important;
+    border-radius: 12px !important;
 }
 
-/* Títulos y fotos mini */
-.prof-recipe-title {
-    gap: 2px !important;
+#profesiones-panel > .prof-btn img {
+    width: 40px !important;
+    height: 40px !important;
+    margin-bottom: 5px;
 }
 
-.prof-recipe-title img {
-    width: 22px !important; /* Iconos más pequeños */
-    height: 22px !important;
-}
-
-.prof-recipe-title strong {
-    font-size: 0.75rem !important; /* Letra más chica */
-    line-height: 1 !important;
-}
-
-/* Textos de coste y descripción (Apretados) */
-.prof-recipes .kv, 
-.prof-recipes .prof-io,
-.prof-recipes .prof-tag {
-    font-size: 0.65rem !important; /* Letra mini */
-    margin: 2px 0 !important;
-    line-height: 1.1 !important;
-}
-
-/* Reducir iconos de costos */
-.prof-recipes .cost-icon {
-    width: 14px !important;
-    height: 14px !important;
-}
-
-/* --- 5. BOTÓN CRAFTEAR MINI --- */
-.prof-foot .btn {
-    padding: 4px !important; /* Botón más delgado */
-    font-size: 0.7rem !important;
-    height: auto !important;
-}
-
-.prof-foot .small-text {
-    font-size: 0.6rem !important; /* Texto de tiempo/XP minúsculo */
-
-    /* --- LIMPIEZA DE ESPACIOS SUPERIORES --- */
-
-/* 1. Pegar el título al borde superior */
-.village-header {
-    margin-bottom: 2px !important;
+/* --- 2. CABECERA ULTRA-COMPACTA (Arriba de las recetas) --- */
+/* Pegamos el título al borde superior */
+.village-header { 
+    margin-bottom: 2px !important; 
     padding: 0 !important;
 }
-.village-header .title { font-size: 1.1rem !important; margin: 0 !important; }
-.village-header .subtitle { display: none; } /* Ocultamos el subtítulo para ganar espacio */
-
-/* 2. Compactar el selector de oficios (Herrero, Carpintero...) */
-.prof-tabs {
-    margin-bottom: 5px !important;
-    gap: 5px !important;
+.village-header .title { 
+    font-size: 1.1rem !important; 
+    margin: 0 !important; 
 }
-.prof-tab-btn {
-    padding: 4px 8px !important;
-    font-size: 0.8rem !important;
-}
+/* Ocultamos el subtítulo largo para ganar 40px de espacio */
+.village-header .subtitle { 
+    display: none !important; 
+} 
 
-/* 3. Reducir el bloque del Herrero (Nivel, XP, Progreso) */
+/* Compactar el bloque del Oficio (Herrero, Carpintero...) */
 .prof-header {
-    padding: 3px 5px !important;
-    margin-bottom: 3px !important;
+    padding: 4px 10px !important;
+    margin-bottom: 4px !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
 }
-.prof-header h3 { font-size: 0.9rem !important; margin: 0 !important; }
-.prof-header p { font-size: 0.75rem !important; margin: 0 !important; line-height: 1.2; }
 
-/* 4. Barra de progreso más fina */
+.prof-header h3 { 
+    font-size: 0.9rem !important; 
+    margin: 0 !important; 
+}
+
+.prof-header p { 
+    font-size: 0.7rem !important; 
+    margin: 0 !important; 
+    line-height: 1.1 !important; 
+}
+
+/* Barra de nivel súper finita */
 .prof-level-bar {
     height: 4px !important;
     margin: 3px 0 !important;
+    background: rgba(0,0,0,0.4) !important;
+    border-radius: 99px;
+    overflow: hidden;
+}
+.prof-level-bar div {
+    height: 100%;
+    background: var(--accent-2, #86efac);
 }
 
-/* 5. Sección de Producción y Recetas (Pegarlas) */
+/* Títulos de "Cola" y "Recetas" pegados */
 .subtitle, .prof-main h3 {
     margin: 4px 0 2px 0 !important;
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* 6. Línea divisoria casi invisible */
-hr.sep {
-    margin: 2px 0 !important;
-    opacity: 0.05;
+hr.sep { 
+    margin: 2px 0 !important; 
+    opacity: 0.05; 
 }
-    opacity: 0.7;
+
+/* --- 3. CUADRÍCULA DE RECETAS "MINI" (5 Columnas) --- */
+.prof-recipes {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; 
+    gap: 6px !important;
+    margin-top: 5px !important;
+    width: 100% !important;
+}
+
+/* La tarjeta de la receta reducida al máximo */
+.prof-recipes .card {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 6px !important;
+    border-radius: 8px !important;
+    min-height: 150px !important; /* Altura controlada */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+/* Títulos e Iconos dentro de la receta */
+.prof-recipe-title { 
+    display: flex !important;
+    gap: 4px !important; 
+    align-items: flex-start !important;
+}
+.prof-recipe-title img, .prof-recipe-title .cost-icon { 
+    width: 20px !important; 
+    height: 20px !important; 
+}
+.prof-recipe-title strong { 
+    font-size: 0.75rem !important; 
+    line-height: 1 !important; 
+}
+
+/* Textos internos mini */
+.prof-recipes .kv, .prof-recipes .prof-io, .prof-tag {
+    font-size: 0.65rem !important;
+    margin: 1px 0 !important;
+    line-height: 1.1 !important;
+}
+
+/* Iconos de los materiales (hierro, madera, etc) */
+.cost-icon { 
+    width: 12px !important; 
+    height: 12px !important; 
+    vertical-align: middle;
+}
+
+/* --- 4. BOTÓN CRAFTEAR MINI --- */
+.prof-foot { 
+    margin-top: auto; 
+    padding-top: 5px;
+}
+.prof-foot .btn {
+    all: revert !important;
+    padding: 4px !important;
+    font-size: 0.7rem !important;
+    background: #deff9a !important;
+    color: #000 !important;
+    border: none !important;
+    width: 100% !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+}
+
+.prof-foot .small-text { 
+    font-size: 0.6rem !important; 
+    opacity: 0.6; 
+    display: block;
+    text-align: center;
+    margin-top: 2px;
+}
+
+/* Ajuste para pantallas medianas */
+@media (max-width: 1200px) {
+    .prof-recipes { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+/* Ajuste para móviles */
+@media (max-width: 800px) {
+    .prof-recipes { grid-template-columns: repeat(2, 1fr) !important; }
 }
