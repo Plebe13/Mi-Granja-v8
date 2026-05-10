@@ -1,61 +1,89 @@
-/* --- CONTENEDOR DE RECETAS (El "Cuerpo" central) --- */
-/* Creamos la cuadrícula de 5 columnas */
-#pueblo-recetas {
+/* 1. DISEÑO DE LA PLAZA (NPCs) */
+#profesiones-panel {
     display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important; /* 5 columnas iguales */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 15px !important;
+    padding: 15px !important;
+}
+
+#profesiones-panel > .prof-btn {
+    min-height: 140px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 2px solid #deff9a !important;
+    border-radius: 12px !important;
+}
+
+#profesiones-panel > .prof-btn img {
+    width: 56px !important;
+    height: 56px !important;
+    margin-bottom: 8px !important;
+}
+
+/* 2. EL TRUCO PARA LAS 5 COLUMNAS */
+/* Buscamos el contenedor que crea el JS para las recetas */
+#pueblo .grid, 
+#pueblo [id*="lista"], 
+#pueblo .recetas-contenedor {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* <--- AQUÍ MANDAMOS LAS 5 FILAS */
     gap: 12px !important;
-    padding: 10px 0 !important;
+    width: 100% !important;
     align-items: stretch !important;
 }
 
-/* --- CADA TARJETA DE RECETA --- */
+/* 3. TARJETAS DE RECETAS COMPACTAS */
 .receta-item {
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 12px !important;
+    border-radius: 10px !important;
     padding: 12px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important; /* Mantiene el botón abajo */
-    text-align: left !important;
-    font-size: 0.85rem !important; /* Texto un poco más compacto */
+    justify-content: space-between !important;
+    min-height: 200px !important; /* Para que todas midan lo mismo */
 }
 
-/* Títulos de las recetas */
 .receta-item h4 {
-    margin: 0 0 5px 0 !important;
-    font-size: 0.95rem !important;
-    color: var(--text);
+    font-size: 0.9rem !important;
+    margin: 5px 0 !important;
 }
 
-/* Iconos dentro de la tarjeta */
-.receta-item img {
-    width: 28px !important;
-    height: 28px !important;
-    margin-bottom: 5px !important;
+.receta-item p, .receta-item div {
+    font-size: 0.75rem !important; /* Texto pequeño para que quepa */
+    line-height: 1.2 !important;
 }
 
-/* --- EL BOTÓN [CRAFTEAR] --- */
+/* 4. BOTÓN DE CRAFTEAR */
 .receta-item .prof-btn {
     all: revert !important;
-    width: 100% !important; /* Botón ancho que ocupa la tarjeta */
-    height: 32px !important;
+    width: 100% !important;
+    height: 30px !important;
     background: #deff9a !important;
     color: #000 !important;
     border: none !important;
-    border-radius: 6px !important;
+    border-radius: 5px !important;
     font-weight: bold !important;
-    font-size: 0.8rem !important;
-    cursor: pointer !important;
-    margin-top: 10px !important;
+    font-size: 0.75rem !important;
+    margin-top: auto !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    cursor: pointer !important;
 }
 
-/* Responsive: Si la pantalla es pequeña, bajamos a 2 columnas */
+/* Iconos minúsculos dentro de la receta */
+.receta-item img {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Ajuste para móviles */
 @media (max-width: 1000px) {
-    #pueblo-recetas {
+    #pueblo .grid, #pueblo [id*="lista"] {
         grid-template-columns: repeat(2, 1fr) !important;
     }
 }
