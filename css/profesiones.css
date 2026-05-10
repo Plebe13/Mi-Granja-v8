@@ -1,64 +1,61 @@
-/* 1. DISEÑO DE LA PLAZA (NPCs) */
-#profesiones-panel {
+/* --- CONTENEDOR DE RECETAS (El "Cuerpo" central) --- */
+/* Creamos la cuadrícula de 5 columnas */
+#pueblo-recetas {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
-    gap: 15px !important;
-    padding: 15px !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* 5 columnas iguales */
+    gap: 12px !important;
+    padding: 10px 0 !important;
+    align-items: stretch !important;
 }
 
-/* Tarjetas de los NPCs (Herrero, Carpintero...) */
-#profesiones-panel > .prof-btn {
-    min-height: 140px !important;
+/* --- CADA TARJETA DE RECETA --- */
+.receta-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: rgba(30, 41, 59, 0.8) !important;
-    border: 2px solid #deff9a !important;
-    border-radius: 12px !important;
-}
-
-#profesiones-panel > .prof-btn img {
-    width: 56px !important;
-    height: 56px !important;
-    margin-bottom: 8px !important;
-}
-
-/* 2. DISEÑO DE LAS RECETAS (Listado interno) */
-.receta-item {
-    display: block !important;
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 10px !important;
-    padding: 12px 18px !important; /* Más espacio interno */
-    margin-bottom: 12px !important;
+    justify-content: space-between !important; /* Mantiene el botón abajo */
     text-align: left !important;
-    width: 100% !important;
+    font-size: 0.85rem !important; /* Texto un poco más compacto */
 }
 
-/* El botón "Craftear" dentro de la receta */
+/* Títulos de las recetas */
+.receta-item h4 {
+    margin: 0 0 5px 0 !important;
+    font-size: 0.95rem !important;
+    color: var(--text);
+}
+
+/* Iconos dentro de la tarjeta */
+.receta-item img {
+    width: 28px !important;
+    height: 28px !important;
+    margin-bottom: 5px !important;
+}
+
+/* --- EL BOTÓN [CRAFTEAR] --- */
 .receta-item .prof-btn {
-    all: revert !important; 
-    display: inline-flex !important;
+    all: revert !important;
+    width: 100% !important; /* Botón ancho que ocupa la tarjeta */
     height: 32px !important;
-    min-height: 32px !important;
-    padding: 0 15px !important;
     background: #deff9a !important;
     color: #000 !important;
+    border: none !important;
     border-radius: 6px !important;
     font-weight: bold !important;
-    font-size: 13px !important;
-    border: none !important;
-    margin-top: 10px !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 8px !important;
+    font-size: 0.8rem !important;
     cursor: pointer !important;
+    margin-top: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-/* Iconos de ingredientes y resultados en recetas */
-.receta-item img {
-    width: 22px !important;
-    height: 22px !important;
-    vertical-align: middle !important;
+/* Responsive: Si la pantalla es pequeña, bajamos a 2 columnas */
+@media (max-width: 1000px) {
+    #pueblo-recetas {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
 }
