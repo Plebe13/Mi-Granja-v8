@@ -1,11 +1,11 @@
-/* --- 1. PLAZA CENTRAL (NPCs) --- */
+/* --- 1. ESTRUCTURA DE LA PLAZA (NPCs Grandes) --- */
 #profesiones-panel {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
     gap: 15px !important;
-    padding: 15px !important;
 }
 
+/* Solo los botones de NPCs cuando estás en la plaza */
 #profesiones-panel > .prof-btn {
     min-height: 140px !important;
     display: flex !important;
@@ -17,66 +17,100 @@
     border-radius: 12px !important;
 }
 
-/* --- 2. EL TRUCO PARA EL TAMAÑO 1/4 --- */
-/* Forzamos que CUALQUIER grid dentro del panel de profesiones tenga 4 columnas */
-#pueblo .grid, 
-#pueblo-recetas, 
-.prof-recipes {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important; /* <--- Esto es lo que querías */
-    gap: 10px !important;
-    width: 100% !important;
-    max-width: none !important;
+#profesiones-panel > .prof-btn img {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 10px;
 }
 
-/* --- 3. TARJETAS DE RECETA (Más compactas) --- */
-.receta-item, .prof-recipes .card {
+/* --- 2. EL PANEL INTERNO (Cuando entras al Herrero/Carpintero) --- */
+.prof-panel {
+    display: flex !important;
+    gap: 20px;
+}
+
+.prof-sidebar {
+    flex: 0 0 180px; /* Sidebar de NPCs a la izquierda */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.prof-main {
+    flex: 1; /* Espacio central de recetas */
+}
+
+/* --- 3. CUADRÍCULA DE 5 COLUMNAS PARA RECETAS --- */
+.prof-recipes {
+    display: grid !important;
+    /* Forzamos 5 columnas como en tu imagen */
+    grid-template-columns: repeat(5, 1fr) !important; 
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 15px;
+}
+
+/* --- 4. TARJETAS DE RECETA COMPACTAS --- */
+.prof-recipes .card {
     background: rgba(255, 255, 255, 0.04) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     padding: 10px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
-    min-height: 180px !important; /* Un poco más bajas para que quepan más */
+    min-height: 220px !important; /* Altura uniforme */
 }
 
-/* Títulos y textos pequeños */
-.receta-item h4, .prof-recipe-title strong {
-    font-size: 0.8rem !important;
-    margin: 2px 0 !important;
+/* Títulos e Iconos dentro de la receta */
+.prof-recipe-title {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 5px;
 }
 
-.receta-item p, .receta-item div, .prof-io {
-    font-size: 0.7rem !important;
-    line-height: 1.1 !important;
+.prof-recipe-title img {
+    width: 28px !important;
+    height: 28px !important;
 }
 
-/* --- 4. BOTÓN CRAFTEAR --- */
-.receta-item .prof-btn, .prof-foot .btn {
+.prof-recipe-title strong {
+    font-size: 0.85rem !important;
+    display: block;
+}
+
+/* Textos de coste y descripción */
+.prof-recipes .kv, .prof-recipes .prof-io {
+    font-size: 0.75rem !important;
+    margin: 4px 0 !important;
+    line-height: 1.2;
+}
+
+/* --- 5. BOTÓN CRAFTEAR (Abajo del todo) --- */
+.prof-foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.prof-foot .btn {
     all: revert !important;
     width: 100% !important;
     background: #deff9a !important;
     color: #000 !important;
     border: none !important;
     font-weight: bold !important;
-    padding: 5px !important;
-    font-size: 0.7rem !important;
+    padding: 6px !important;
+    font-size: 0.75rem !important;
     border-radius: 4px !important;
-    margin-top: 8px !important;
-    cursor: pointer !important;
 }
 
-/* Iconos */
-.receta-item img, .prof-recipe-title img {
-    width: 22px !important;
-    height: 22px !important;
+/* Ajuste Responsive */
+@media (max-width: 1200px) {
+    .prof-recipes { grid-template-columns: repeat(3, 1fr) !important; }
 }
-
-/* Responsive: Para que en el móvil no explote */
-@media (max-width: 1100px) {
-    #pueblo .grid { grid-template-columns: repeat(3, 1fr) !important; }
-}
-@media (max-width: 700px) {
-    #pueblo .grid { grid-template-columns: repeat(2, 1fr) !important; }
+@media (max-width: 800px) {
+    .prof-recipes { grid-template-columns: repeat(2, 1fr) !important; }
 }
